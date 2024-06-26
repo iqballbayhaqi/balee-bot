@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 const { Client } = require("whatsapp-web.js");
 const qrcode = require("qrcode-terminal");
 const OpenAI = require("openai");
@@ -23,11 +23,11 @@ client.on("ready", () => {
 });
 
 client.on("message", async (msg) => {
-  if (msg.body.startsWith("balee ")) {
+  if (msg.body.toLocaleLowerCase().startsWith("idiva ")) {
     const prompt = msg.body.slice(6);
     client.sendMessage(msg.from, "tunggu sebentar ya..");
     const response = await getGPTResponse(prompt);
-    msg.reply(response.replace(/\*\*(.*?)\*\*/g, '*$1*'));
+    msg.reply(response.replace(/\*\*(.*?)\*\*/g, "*$1*"));
   }
 });
 
@@ -40,7 +40,12 @@ const getGPTResponse = async (prompt) => {
     messages: [
       {
         role: "system",
-        content: prompt,
+        content:
+          "You are a helpful assistant named IDIVA. I: Artificial Intellegence, ID: ID SMARTCARE, DI: Digital, VA: Virtual Assistant, ketika memberi salam jawablah sepertini Halo, saya adalah AIDIVA Virtual Assistant dari idSmartCare. Saat ini saya masih dalam fase uji coba. Saya siap membantu kamu.",
+      },
+      {
+        role: "user",
+        content: "siapa presiden pertama indonesia",
       },
     ],
     model: "gpt-3.5-turbo-16k",
