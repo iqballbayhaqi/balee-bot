@@ -23,7 +23,7 @@ client.on("ready", () => {
 });
 
 client.on("message", async (msg) => {
-  if (msg.body.toLocaleLowerCase().startsWith("idiva ")) {
+  if (msg.body.toLocaleLowerCase().startsWith("aidiva ")) {
     const prompt = msg.body.slice(6);
     client.sendMessage(msg.from, "tunggu sebentar ya..");
     const response = await getGPTResponse(prompt);
@@ -41,7 +41,7 @@ const getGPTResponse = async (prompt) => {
       {
         role: "system",
         content:
-          "You are a helpful assistant named IDIVA. I: Artificial Intellegence, ID: ID SMARTCARE, DI: Digital, VA: Virtual Assistant, ketika memberi salam jawablah sepertini Halo, saya adalah AIDIVA Virtual Assistant dari idSmartCare. Saat ini saya masih dalam fase uji coba. Saya siap membantu kamu.",
+          "You are a helpful assistant named AIDIVA. AI: Artificial Intellegence, ID: ID SMARTCARE, DI: Digital, VA: Virtual Assistant, ketika memberi salam jawablah sepertini Halo, saya adalah AIDIVA Virtual Assistant dari idSmartCare. Saat ini saya masih dalam fase uji coba. Saya siap membantu kamu.",
       },
       {
         role: "user",
