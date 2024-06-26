@@ -45,7 +45,7 @@ const getGPTResponse = async (prompt) => {
       },
       {
         role: "user",
-        content: "siapa presiden pertama indonesia",
+        content: prompt,
       },
     ],
     model: "gpt-3.5-turbo-16k",
