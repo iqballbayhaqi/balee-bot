@@ -5,7 +5,8 @@ const OpenAI = require("openai");
 
 const client = new Client({
   puppeteer: {
-    args: ["--no-sandbox"],
+    headless: true,
+    args: [ '--no-sandbox', '--disable-gpu', ],
   },
   webVersionCache: {
     type: "remote",
