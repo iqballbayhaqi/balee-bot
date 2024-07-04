@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { Client } = require("whatsapp-web.js");
+const { Client, LocalAuth } = require("whatsapp-web.js");
 const qrcode = require("qrcode-terminal");
 const OpenAI = require("openai");
 
@@ -11,7 +11,7 @@ const client = new Client({
     type: "remote",
     remotePath:
       "https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2412.54.html",
-  },
+  }
 });
 
 client.on("qr", (qr) => {
