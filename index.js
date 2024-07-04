@@ -23,10 +23,17 @@ client.on("ready", () => {
 });
 
 client.on("message", async (msg) => {
-  if (msg.body.toLocaleLowerCase().startsWith("aidiva ")) {
-    const prompt = msg.body.slice(6);
-    client.sendMessage(msg.from, "tunggu sebentar ya..");
-    const response = await getGPTResponse(prompt);
+  if (process.env.USE_PREFIX) {
+    if (msg.body.toLocaleLowerCase().startsWith(`${process.env.USE_PREFIX} `)) {
+      const prompt = msg.body.slice(6);
+      if (process.env.LOADING_MESSAGE){
+        client.sendMessage(msg.from, process.env.LOADING_MESSAGE);
+      }
+      const response = await getGPTResponse(prompt);
+      msg.reply(response.replace(/\*\*(.*?)\*\*/g, "*$1*"));
+    }
+  } else {
+    const response = await getGPTResponse(msg.body);
     msg.reply(response.replace(/\*\*(.*?)\*\*/g, "*$1*"));
   }
 });
